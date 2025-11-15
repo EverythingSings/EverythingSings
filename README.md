@@ -104,15 +104,6 @@ vectordb query < prompt.txt | agent process | plurcast publish
 - Agent-friendly RAG support
 - Protocol-agnostic (works with any content source)
 
-### 🌉 Future: Bridging RSS ↔ Nostr
-**Completing the circle between protocols**
-
-Exploring a bridge to connect RSS (federated web) with Nostr (decentralized social):
-- **RSS → Nostr:** Follow traditional blogs/podcasts on Nostr relays
-- **Nostr → RSS:** Read Nostr streams in your RSS reader
-
-This would enable true **protocol sovereignty** - consume and publish on your terms, regardless of the underlying protocol.
-
 ## Why This Matters
 
 **You should control your attention and your audience, not algorithms.**
