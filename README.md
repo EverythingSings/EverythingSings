@@ -16,7 +16,9 @@ I'm building tools that respect user sovereignty and follow Unix philosophy, gui
 
 ## Current Projects
 
-### 🌐 [Plurcast](https://github.com/plurcast/plurcast)
+> **Note:** These projects will be open sourced once they reach stable releases.
+
+### 🌐 Plurcast
 **Cast to many** - Unix tools for the decentralized social web
 
 Post to Nostr, Mastodon, and SSB from the command line. Follows Unix philosophy: reads from stdin, outputs to stdout, composes with pipes.
@@ -39,7 +41,7 @@ plur-history --since=7d --format=json | jq '.[] | select(.platform == "nostr")'
 - ✅ Agent-friendly JSON output
 - ✅ Unix-composable (stdin/stdout, semantic exit codes)
 
-### 📡 [rss-wasm](https://github.com/EverythingSings/rss-wasm)
+### 📡 rss-wasm
 **A local-first, deploy-anywhere RSS/Atom reader** built with Rust and WebAssembly
 
 Pure WASM parser that compiles to < 1MB, runs anywhere, and composes beautifully with Unix tools.
@@ -94,7 +96,7 @@ These tools enable:
 
 ## The Complete Specification
 
-All tools follow the [SCT (Sovereign Composable Tools) specification](https://github.com/EverythingSings/sct-spec) with:
+All tools follow the SCT (Sovereign Composable Tools) specification with:
 
 - **Layer 1 (Core):** Pure WASM, zero I/O, maximum portability
 - **Layer 2 (Protocol):** Optional network (feature-flagged)
