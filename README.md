@@ -6,7 +6,7 @@ Building **Sovereign Composable Tools** for intentional information sovereignty.
 
 ## The Vision
 
-**Reclaiming agency from algorithms and platforms.**
+**Reclaiming agency from algorithms and platforms - for humans AND agents.**
 
 Modern platforms have stolen our attention and creative output:
 - Consumption feeds driven by engagement algorithms, not intention
@@ -18,6 +18,8 @@ I'm building the **anti-algorithm stack** - tools that restore agency over both 
 - **INPUT:** Subscribe to sources intentionally, not algorithmically
 - **OUTPUT:** Publish to your chosen audiences, not platform silos
 - **SOVEREIGNTY:** Own your data, keys, and execution
+
+**These tools serve both humans seeking agency AND agents needing composable primitives.** The same interface works for both - because the future isn't humans OR agents, it's humans WITH agents.
 
 This isn't about building "better platforms." It's about building **composable primitives** that make platforms unnecessary.
 
@@ -61,21 +63,26 @@ plur-history --since=7d --format=json | jq '.[] | select(.platform == "nostr")'
 - ✅ Unix-composable (stdin/stdout, semantic exit codes)
 
 ### 📡 rss-wasm - The INPUT Layer
-**Intentional consumption, not algorithmic feeds**
+**Intentional consumption for humans, token-efficient primitives for agents**
 
-Subscribe to the sources you choose - blogs, podcasts, news sites - without algorithms, ads, or surveillance. A local-first RSS/Atom reader built with Rust and WebAssembly. Your attention, your rules.
+Subscribe to the sources you choose - blogs, podcasts, news sites - without algorithms, ads, or surveillance. Built with Rust and WebAssembly for both human consumption and autonomous agent workflows.
+
+**Why RSS for agents?** RSS is orders of magnitude more token-efficient than HTML parsing. Monitoring OpenAI/Anthropic announcements via RSS uses ~2K tokens vs 50K+ for HTML scraping. This enables multi-agent systems to respond to news quickly while minimizing costs.
 
 Pure WASM parser that compiles to < 1MB, runs anywhere, and composes beautifully with Unix tools.
 
 ```bash
-# Parse any feed format
+# Parse any feed format (human or agent)
 curl https://blog.com/feed.xml | rss-wasm parse
 
 # Filter and query
 rss-wasm parse feed.xml | rss-wasm filter --since=24h | jq '.items[].title'
 
-# Agent-driven workflows
-rss-wasm parse feed.xml | rss-wasm filter --since=7d | llm summarize
+# Multi-agent workflows
+rss-wasm parse openai-feed.xml | agent analyze-impact | agent draft-response
+
+# Archive for historical context
+rss-wasm parse feed.xml | vectordb index --collection=ai-news
 ```
 
 **Features:**
@@ -92,10 +99,19 @@ rss-wasm parse feed.xml | rss-wasm filter --since=7d | llm summarize
 Completing the ecosystem: **INPUT** (rss-wasm) + **OUTPUT** (Plurcast) + **INTELLIGENCE** (sct-vec)
 
 ```bash
-# The complete loop
-rss-wasm fetch --feed=blog.xml | vectordb index --collection=feeds
-echo "rust wasm tools" | vectordb query --collection=feeds --k=10
-vectordb query < prompt.txt | agent process | plurcast publish
+# Monitor and respond to AI announcements (multi-agent workflow)
+rss-wasm parse openai-feed.xml anthropic-feed.xml | \
+  rss-wasm filter --since=1h | \
+  vectordb index --collection=ai-news
+
+# Query historical context and draft response
+vectordb query "previous model releases" --collection=ai-news | \
+  agent analyze-trends | \
+  agent draft-commentary | \
+  plurcast publish --platform nostr,mastodon
+
+# Semantic search across all archived content
+echo "rust wasm performance" | vectordb query --collection=feeds --k=10
 ```
 
 **Vision:**
@@ -106,23 +122,31 @@ vectordb query < prompt.txt | agent process | plurcast publish
 
 ## Why This Matters
 
-**You should control your attention and your audience, not algorithms.**
+**You should control your attention and your audience, not algorithms. And your agents need composable primitives, not brittle integrations.**
 
 Every platform wants to:
 - Control what you see (algorithmic feeds maximize engagement, not value)
 - Control who sees you (your audience is their hostage)
 - Monetize your attention (ads, tracking, surveillance capitalism)
+- Force agents to scrape, hack, or use expensive APIs they control
 
 This isn't sustainable. It's not even desirable.
 
-**These tools restore agency:**
+**These tools restore agency for humans:**
 - ✊ **Intentional consumption** - Subscribe to what matters, not what's trending
 - ✊ **Sovereign creation** - Own your audience, not rent it from platforms
-- ✊ **Composable workflows** - Build your own tools, don't wait for features
 - ✊ **Local-first data** - Your information lives on your machine
-- ✊ **Agent-friendly** - Let AI work for you, not platforms
+- ✊ **Composable workflows** - Build your own tools, don't wait for features
+
+**And provide foundations for agents:**
+- 🤖 **Token-efficient primitives** - RSS vs HTML parsing saves 25x on tokens
+- 🤖 **Testable during development** - Agents can verify their own code works
+- 🤖 **Multi-agent orchestration** - Compose tools for emergent behaviors
+- 🤖 **Human-agent collaboration** - Same interface, different users
 
 **The deeper vision:** RSS and Unix philosophy were designed for machine-readable, composable data flows. With LLMs and AI agents, we can finally complete this vision - tools that compose seamlessly with both humans and machines.
+
+Traditional tools force a choice: consumer apps for humans, or APIs for agents. These tools serve both, because **the future isn't humans OR agents - it's humans WITH agents**, using the same sovereign, composable primitives.
 
 ## The Complete Specification
 
