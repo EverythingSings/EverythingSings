@@ -1,12 +1,29 @@
 # 👋 Hi, I'm @EverythingSings
 
-Building **Sovereign Composable Tools** for the decentralized web.
+Building **Sovereign Composable Tools** for intentional information sovereignty.
 
 🌐 [EverythingSings.Art](http://EverythingSings.Art)
 
+## The Vision
+
+**Reclaiming agency from algorithms and platforms.**
+
+Modern platforms have stolen our attention and creative output:
+- Consumption feeds driven by engagement algorithms, not intention
+- Creative work trapped behind platform walls and ad-driven feeds
+- Your audience, your content, your data - all held hostage
+
+I'm building the **anti-algorithm stack** - tools that restore agency over both what you consume and what you create:
+
+- **INPUT:** Subscribe to sources intentionally, not algorithmically
+- **OUTPUT:** Publish to your chosen audiences, not platform silos
+- **SOVEREIGNTY:** Own your data, keys, and execution
+
+This isn't about building "better platforms." It's about building **composable primitives** that make platforms unnecessary.
+
 ## Philosophy: The Five Axioms
 
-I'm building tools that respect user sovereignty and follow Unix philosophy, guided by five core principles:
+These tools respect user sovereignty and follow Unix philosophy, guided by five core principles:
 
 1. **Sovereignty** - Users own their data, keys, and execution (no platform lock-in)
 2. **Composability** - Tools compose via text streams using structured I/O
@@ -18,10 +35,12 @@ I'm building tools that respect user sovereignty and follow Unix philosophy, gui
 
 > **Note:** These projects will be open sourced once they reach stable releases.
 
-### 🌐 Plurcast
-**Cast to many** - Unix tools for the decentralized social web
+### 🌐 Plurcast - The OUTPUT Layer
+**Cast to many** - Intentional creation instead of platform capture
 
-Post to Nostr, Mastodon, and SSB from the command line. Follows Unix philosophy: reads from stdin, outputs to stdout, composes with pipes.
+Post to Nostr, Mastodon, and SSB from the command line. Create once, reach your chosen audiences. No algorithms deciding who sees your work. No ads. No engagement farming. Just intentional distribution to decentralized platforms.
+
+Follows Unix philosophy: reads from stdin, outputs to stdout, composes with pipes.
 
 ```bash
 # Post to multiple platforms
@@ -41,8 +60,10 @@ plur-history --since=7d --format=json | jq '.[] | select(.platform == "nostr")'
 - ✅ Agent-friendly JSON output
 - ✅ Unix-composable (stdin/stdout, semantic exit codes)
 
-### 📡 rss-wasm
-**A local-first, deploy-anywhere RSS/Atom reader** built with Rust and WebAssembly
+### 📡 rss-wasm - The INPUT Layer
+**Intentional consumption, not algorithmic feeds**
+
+Subscribe to the sources you choose - blogs, podcasts, news sites - without algorithms, ads, or surveillance. A local-first RSS/Atom reader built with Rust and WebAssembly. Your attention, your rules.
 
 Pure WASM parser that compiles to < 1MB, runs anywhere, and composes beautifully with Unix tools.
 
@@ -66,9 +87,9 @@ rss-wasm parse feed.xml | rss-wasm filter --since=7d | llm summarize
 - ✅ HTTP-agnostic core (accepts stdin for max composability)
 
 ### 🔮 sct-vec (Planned Q1 2026)
-**Vector search for the decentralized web** - The intelligence layer
+**Vector search for the decentralized web** - The INTELLIGENCE Layer
 
-Completing the ecosystem: **Read** (rss-wasm) + **Write** (Plurcast) + **Search** (sct-vec)
+Completing the ecosystem: **INPUT** (rss-wasm) + **OUTPUT** (Plurcast) + **INTELLIGENCE** (sct-vec)
 
 ```bash
 # The complete loop
@@ -83,16 +104,34 @@ vectordb query < prompt.txt | agent process | plurcast publish
 - Agent-friendly RAG support
 - Protocol-agnostic (works with any content source)
 
+### 🌉 Future: Bridging RSS ↔ Nostr
+**Completing the circle between protocols**
+
+Exploring a bridge to connect RSS (federated web) with Nostr (decentralized social):
+- **RSS → Nostr:** Follow traditional blogs/podcasts on Nostr relays
+- **Nostr → RSS:** Read Nostr streams in your RSS reader
+
+This would enable true **protocol sovereignty** - consume and publish on your terms, regardless of the underlying protocol.
+
 ## Why This Matters
 
-**Completing an unfinished vision:** RSS and Unix philosophy were designed for machine-readable, composable data flows. With LLMs and AI agents, we can finally realize this vision.
+**You should control your attention and your audience, not algorithms.**
 
-These tools enable:
-- 🤖 **Agentic workflows** - LLMs composing with Unix tools
-- 🔐 **User sovereignty** - Your data, your keys, your control
-- 🌍 **Decentralization** - No corporate platforms, no lock-in
-- 📦 **True portability** - One WASM binary, deploy anywhere
-- 🔗 **Maximum composability** - Pipe everything, script everything
+Every platform wants to:
+- Control what you see (algorithmic feeds maximize engagement, not value)
+- Control who sees you (your audience is their hostage)
+- Monetize your attention (ads, tracking, surveillance capitalism)
+
+This isn't sustainable. It's not even desirable.
+
+**These tools restore agency:**
+- ✊ **Intentional consumption** - Subscribe to what matters, not what's trending
+- ✊ **Sovereign creation** - Own your audience, not rent it from platforms
+- ✊ **Composable workflows** - Build your own tools, don't wait for features
+- ✊ **Local-first data** - Your information lives on your machine
+- ✊ **Agent-friendly** - Let AI work for you, not platforms
+
+**The deeper vision:** RSS and Unix philosophy were designed for machine-readable, composable data flows. With LLMs and AI agents, we can finally complete this vision - tools that compose seamlessly with both humans and machines.
 
 ## The Complete Specification
 
@@ -118,4 +157,6 @@ All tools follow the SCT (Sovereign Composable Tools) specification with:
 
 ---
 
-*Building the primitives for a sovereign, composable, decentralized web.*
+*Building composable primitives for intentional information sovereignty.*
+
+*Your attention. Your audience. Your data.*
