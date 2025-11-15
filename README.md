@@ -93,25 +93,57 @@ rss-wasm parse feed.xml | vectordb index --collection=ai-news
 - ✅ 57 automated tests passing
 - ✅ HTTP-agnostic core (accepts stdin for max composability)
 
+### 🧪 sct-npow (Experimental)
+**Nostr Proof-of-Work Reader** - The INPUT Layer (Decentralized)
+
+Read Nostr by computational commitment, not algorithms. Filter the decentralized firehose using NIP-13 Proof of Work as a quality primitive.
+
+**Why PoW filtering?** On open protocols like Nostr, anyone can publish anything. PoW adds computational cost - high-PoW events signal intentional, committed content. No social graphs needed, no central moderation, just verifiable computational work.
+
+```bash
+# Fetch high-PoW events from Nostr relays
+sct-npow fetch --relay wss://relay.damus.io --min-pow 20 --since 24h
+
+# Pipe to vector search
+sct-npow fetch --min-pow 20 | sct-vec index --collection nostr-pow
+
+# Merge with RSS for unified intentional feed
+(rss-wasm parse feeds.opml && sct-npow fetch --min-pow 20) | \
+  jq -s 'sort_by(.created_at) | reverse'
+
+# Amplify quality content cross-platform
+sct-npow fetch --min-pow 25 --limit 1 | plurcast publish --platform mastodon
+```
+
+**Experimental Features:**
+- 🧪 PoW-based content filtering (NIP-13)
+- 🧪 Multi-relay event fetching
+- 🧪 Local SQLite caching (shared with other SCT tools)
+- 🧪 Composable with rss-wasm, plurcast, sct-vec
+- 🧪 WASM-first (targeting wasm32-wasip2)
+
+See [sct-npow spec](/docs/sct-npow-spec.md) for full design.
+
 ### 🔮 sct-vec (Planned Q1 2026)
 **Vector search for the decentralized web** - The INTELLIGENCE Layer
 
-Completing the ecosystem: **INPUT** (rss-wasm) + **OUTPUT** (Plurcast) + **INTELLIGENCE** (sct-vec)
+Completing the ecosystem: **INPUT** (rss-wasm + sct-npow) + **OUTPUT** (Plurcast) + **INTELLIGENCE** (sct-vec)
 
 ```bash
 # Monitor and respond to AI announcements (multi-agent workflow)
-rss-wasm parse openai-feed.xml anthropic-feed.xml | \
-  rss-wasm filter --since=1h | \
-  vectordb index --collection=ai-news
+# Combine RSS (official blogs) + Nostr (community commentary)
+(rss-wasm parse openai-feed.xml anthropic-feed.xml && \
+ sct-npow fetch --min-pow 20 --search "llm|ai") | \
+  sct-vec index --collection=ai-news
 
 # Query historical context and draft response
-vectordb query "previous model releases" --collection=ai-news | \
+sct-vec query "previous model releases" --collection=ai-news --k=20 | \
   agent analyze-trends | \
   agent draft-commentary | \
   plurcast publish --platform nostr,mastodon
 
 # Semantic search across all archived content
-echo "rust wasm performance" | vectordb query --collection=feeds --k=10
+echo "rust wasm performance" | sct-vec query --collection=feeds --k=10
 ```
 
 **Vision:**
