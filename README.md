@@ -169,6 +169,7 @@ All tools follow the SCT (Sovereign Composable Tools) specification with:
 - 🌐 Website: [EverythingSings.Art](http://EverythingSings.Art)
 - 💬 Interested in decentralized tools, WASM, and agentic workflows
 - 📫 Open to collaboration on SCT-aligned projects
+- ⚡ Value-for-value: EverythingSings@primal.net (Lightning)
 
 ---
 
