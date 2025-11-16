@@ -266,6 +266,7 @@ This matters because **agents need to build tools that compose reliably**. When 
 - 🌐 Website: [EverythingSings.Art](http://EverythingSings.Art)
 - 💬 Interested in decentralized tools, WASM, and agentic workflows
 - 📫 Open to collaboration on SCT-aligned projects
+- ₿ Value-for-value: bc1qskq3l4gy73ew78hye8uq6yfkkp5cxswducmvkamw2vxun7wms04qneezd5 (Bitcoin)
 - ⚡ Value-for-value: EverythingSings@primal.net (Lightning)
 
 ---
