@@ -19,33 +19,13 @@ I'm building the **anti-algorithm stack** - tools that restore agency over both 
 - **OUTPUT:** Publish to your chosen audiences, not platform silos
 - **SOVEREIGNTY:** Own your data, keys, and execution
 
+In 1997, "The Sovereign Individual" predicted that cryptography would enable individuals to escape institutional control in the information age. These tools implement that vision - cryptographic identities (Nostr), sovereign money (Bitcoin/Lightning), and composable primitives that make platforms unnecessary.
+
 **These tools serve both humans seeking agency AND agents needing composable primitives.** The same interface works for both - because the future isn't humans OR agents, it's humans WITH agents.
 
-This isn't about building "better platforms." It's about building **composable primitives** that make platforms unnecessary.
+## Philosophy: The Five Axioms
 
-## Philosophical Foundations
-
-### Inspiration: The Sovereign Individual
-
-This project draws inspiration from "The Sovereign Individual" (Davidson & Rees-Mogg, 1997), which predicted how cryptography and digital technologies would enable individuals to escape institutional control in the information age.
-
-Written before Bitcoin, before platform capitalism, before AI agents - the book foresaw that cryptographic tools would let individuals own their identity, protect their assets, and operate beyond traditional gatekeepers. Now we're living in that future.
-
-**Where the book predicted, these tools implement:**
-- **Cryptographic sovereignty** → Nostr identities, Bitcoin/Lightning for value transfer
-- **Breaking institutional control** → Escape platform algorithms and data hostage-taking
-- **Information age economics** → Token-efficient primitives for both humans and AI agents
-
-**Where these tools extend the vision:**
-- **Human-agent collaboration** → The book focused on empowered humans; these tools serve humans AND agents using the same composable primitives
-- **Composability as sovereignty** → Unix philosophy + decentralized protocols + WASM portability prevent lock-in at every layer
-- **Practical accessibility** → Building tools for anyone who values sovereignty, not just a technical elite
-
-The book describes the destination. These tools build the roads.
-
-### Philosophy: The Five Axioms
-
-These tools respect user sovereignty and follow Unix philosophy, guided by five core principles:
+These tools follow five core principles that respect user sovereignty and embrace Unix philosophy:
 
 1. **Sovereignty** - Users own their data, keys, and execution (no platform lock-in)
 2. **Composability** - Tools compose via text streams using structured I/O
@@ -182,7 +162,7 @@ Every platform wants to:
 - Monetize your attention (ads, tracking, surveillance capitalism)
 - Force agents to scrape, hack, or use expensive APIs they control
 
-This isn't sustainable. It's not even desirable.
+"The Sovereign Individual" (Davidson & Rees-Mogg, 1997) predicted this transition - written before Bitcoin, before platform capitalism, before AI agents. They foresaw the information age would enable individual sovereignty through cryptography. The technology arrived. The platforms captured it. These tools reclaim it.
 
 **These tools restore agency for humans:**
 - ✊ **Intentional consumption** - Subscribe to what matters, not what's trending
@@ -196,7 +176,7 @@ This isn't sustainable. It's not even desirable.
 - 🤖 **Multi-agent orchestration** - Compose tools for emergent behaviors
 - 🤖 **Human-agent collaboration** - Same interface, different users
 
-**The deeper vision:** RSS and Unix philosophy were designed for machine-readable, composable data flows. With LLMs and AI agents, we can finally complete this vision - tools that compose seamlessly with both humans and machines.
+**The deeper vision:** RSS and Unix philosophy were designed for machine-readable, composable data flows. With LLMs and AI agents, we can finally complete this vision - tools that compose seamlessly with both humans and machines. The Sovereign Individual focused on empowered humans; these tools extend that to human-agent collaboration using the same composable primitives.
 
 Traditional tools force a choice: consumer apps for humans, or APIs for agents. These tools serve both, because **the future isn't humans OR agents - it's humans WITH agents**, using the same sovereign, composable primitives.
 
