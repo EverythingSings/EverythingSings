@@ -19,19 +19,23 @@ I'm building the **anti-algorithm stack** - tools that restore agency over both 
 - **OUTPUT:** Publish to your chosen audiences, not platform silos
 - **SOVEREIGNTY:** Own your data, keys, and execution
 
-**These tools serve both humans seeking agency AND agents needing composable primitives.** The same interface works for both - because the future isn't humans OR agents, it's humans WITH agents.
+In 1997, "The Sovereign Individual" predicted that cryptography would enable individuals to escape institutional control in the information age. These tools implement that vision - cryptographic identities (Nostr), sovereign money (Bitcoin/Lightning), and composable primitives that make platforms unnecessary.
 
-This isn't about building "better platforms." It's about building **composable primitives** that make platforms unnecessary.
+**These tools serve both humans seeking agency AND agents needing composable primitives.** The same interface works for both - because the future isn't humans OR agents, it's humans WITH agents.
 
 ## Philosophy: The Five Axioms
 
-These tools respect user sovereignty and follow Unix philosophy, guided by five core principles:
+These tools follow five core principles that respect user sovereignty and embrace Unix philosophy:
 
 1. **Sovereignty** - Users own their data, keys, and execution (no platform lock-in)
 2. **Composability** - Tools compose via text streams using structured I/O
 3. **Locality** - Offline-first, local storage is the source of truth
 4. **Portability** - Deploy anywhere: WASM-capable, cross-platform
 5. **Openness** - Only decentralized, open protocols (no corporate APIs)
+
+**These tools don't lock you into an ecosystem - not even ours.** Each tool is independently useful and composes with anything. Standard formats (JSON, SQLite, OPML), standard protocols (Nostr, RSS), standard tools (Unix pipes, rsync, git). You can use one SCT tool without any others, and escape the ecosystem anytime.
+
+See [SCT specification](/docs/sct-spec.md) for complete architectural details.
 
 ## Current Projects
 
@@ -42,109 +46,44 @@ These tools respect user sovereignty and follow Unix philosophy, guided by five 
 
 Post to Nostr, Mastodon, and SSB from the command line. Create once, reach your chosen audiences. No algorithms deciding who sees your work. No ads. No engagement farming. Just intentional distribution to decentralized platforms.
 
-Follows Unix philosophy: reads from stdin, outputs to stdout, composes with pipes.
-
-```bash
-# Post to multiple platforms
-echo "Hello decentralized world!" | plur-post
-
-# Pipe composition
-cat draft.txt | sed 's/foo/bar/g' | plur-post --platform nostr,mastodon
-
-# Query history with semantic filtering
-plur-history --since=7d --format=json | jq '.[] | select(.platform == "nostr")'
-```
-
 **Features:**
-- ✅ Multi-platform posting (Nostr, Mastodon, experimental SSB)
-- ✅ Multi-account support with OS keyring
-- ✅ Local SQLite database
-- ✅ Agent-friendly JSON output
-- ✅ Unix-composable (stdin/stdout, semantic exit codes)
+- Multi-platform posting (Nostr, Mastodon, experimental SSB)
+- Multi-account support with OS keyring
+- Local SQLite database
+- Agent-friendly JSON output
+- Unix-composable (stdin/stdout, semantic exit codes)
 
 ### 📡 rss-wasm - The INPUT Layer
 **Intentional consumption for humans, token-efficient primitives for agents**
 
-Subscribe to the sources you choose - blogs, podcasts, news sites - without algorithms, ads, or surveillance. Built with Rust and WebAssembly for both human consumption and autonomous agent workflows.
+Subscribe to the sources you choose - blogs, podcasts, news sites - without algorithms, ads, or surveillance. RSS is orders of magnitude more token-efficient than HTML parsing (~2K tokens vs 50K+), enabling multi-agent systems to monitor information efficiently.
 
-**Why RSS for agents?** RSS is orders of magnitude more token-efficient than HTML parsing. Monitoring OpenAI/Anthropic announcements via RSS uses ~2K tokens vs 50K+ for HTML scraping. This enables multi-agent systems to respond to news quickly while minimizing costs.
-
-Pure WASM parser that compiles to < 1MB, runs anywhere, and composes beautifully with Unix tools.
-
-```bash
-# Parse any feed format (human or agent)
-curl https://blog.com/feed.xml | rss-wasm parse
-
-# Filter and query
-rss-wasm parse feed.xml | rss-wasm filter --since=24h | jq '.items[].title'
-
-# Multi-agent workflows
-rss-wasm parse openai-feed.xml | agent analyze-impact | agent draft-response
-
-# Archive for historical context
-rss-wasm parse feed.xml | vectordb index --collection=ai-news
-```
+Pure WASM parser that compiles to <1MB, runs anywhere, and composes beautifully with Unix tools.
 
 **Features:**
-- ✅ Pure WASM parser (2.0MB optimized)
-- ✅ All formats (RSS 0.91/1.0/2.0, Atom, JSON Feed)
-- ✅ Composable commands (parse, filter, merge, normalize, validate)
-- ✅ Multiple output formats (JSON, JSONL, CSV)
-- ✅ 57 automated tests passing
-- ✅ HTTP-agnostic core (accepts stdin for max composability)
+- Pure WASM parser (2.0MB optimized)
+- All formats (RSS 0.91/1.0/2.0, Atom, JSON Feed)
+- Composable commands (parse, filter, merge, normalize, validate)
+- Multiple output formats (JSON, JSONL, CSV)
+- HTTP-agnostic core (accepts stdin for max composability)
 
 ### 🧪 sct-npow (Experimental)
 **Nostr Proof-of-Work Reader** - The INPUT Layer (Decentralized)
 
-Read Nostr by computational commitment, not algorithms. Filter the decentralized firehose using NIP-13 Proof of Work as a quality primitive.
-
-**Why PoW filtering?** On open protocols like Nostr, anyone can publish anything. PoW adds computational cost - high-PoW events signal intentional, committed content. No social graphs needed, no central moderation, just verifiable computational work.
-
-```bash
-# Fetch high-PoW events from Nostr relays
-sct-npow fetch --relay wss://relay.damus.io --min-pow 20 --since 24h
-
-# Pipe to vector search
-sct-npow fetch --min-pow 20 | sct-vec index --collection nostr-pow
-
-# Merge with RSS for unified intentional feed
-(rss-wasm parse feeds.opml && sct-npow fetch --min-pow 20) | \
-  jq -s 'sort_by(.created_at) | reverse'
-
-# Amplify quality content cross-platform
-sct-npow fetch --min-pow 25 --limit 1 | plurcast publish --platform mastodon
-```
+Read Nostr by computational commitment, not algorithms. Filter the decentralized firehose using NIP-13 Proof of Work as a quality primitive. High-PoW events signal intentional, committed content - no social graphs needed, no central moderation, just verifiable computational work.
 
 **Experimental Features:**
-- 🧪 PoW-based content filtering (NIP-13)
-- 🧪 Multi-relay event fetching
-- 🧪 Local SQLite caching (shared with other SCT tools)
-- 🧪 Composable with rss-wasm, plurcast, sct-vec
-- 🧪 WASM-first (targeting wasm32-wasip2)
+- PoW-based content filtering (NIP-13)
+- Multi-relay event fetching
+- Local SQLite caching
+- WASM-first (targeting wasm32-wasip2)
 
 See [sct-npow spec](/docs/sct-npow-spec.md) for full design.
 
 ### 🔮 sct-vec (Planned Q1 2026)
 **Vector search for the decentralized web** - The INTELLIGENCE Layer
 
-Completing the ecosystem: **INPUT** (rss-wasm + sct-npow) + **OUTPUT** (Plurcast) + **INTELLIGENCE** (sct-vec)
-
-```bash
-# Monitor and respond to AI announcements (multi-agent workflow)
-# Combine RSS (official blogs) + Nostr (community commentary)
-(rss-wasm parse openai-feed.xml anthropic-feed.xml && \
- sct-npow fetch --min-pow 20 --search "llm|ai") | \
-  sct-vec index --collection=ai-news
-
-# Query historical context and draft response
-sct-vec query "previous model releases" --collection=ai-news --k=20 | \
-  agent analyze-trends | \
-  agent draft-commentary | \
-  plurcast publish --platform nostr,mastodon
-
-# Semantic search across all archived content
-echo "rust wasm performance" | sct-vec query --collection=feeds --k=10
-```
+Local-first semantic search across all your intentional feeds. RSS archives, Nostr commentary, historical context - all semantically searchable, all local.
 
 **Vision:**
 - Local-first semantic search using sqlite-vec
@@ -152,111 +91,36 @@ echo "rust wasm performance" | sct-vec query --collection=feeds --k=10
 - Agent-friendly RAG support
 - Protocol-agnostic (works with any content source)
 
+See [usage examples](/docs/examples.md) for composition patterns.
+
 ## Why This Matters
 
-**You should control your attention and your audience, not algorithms. And your agents need composable primitives, not brittle integrations.**
+"The Sovereign Individual" (Davidson & Rees-Mogg, 1997) predicted this transition - written before Bitcoin, before platform capitalism, before AI agents. They foresaw the information age would enable individual sovereignty through cryptography. **The technology arrived. The platforms captured it. These tools reclaim it.**
 
-Every platform wants to:
-- Control what you see (algorithmic feeds maximize engagement, not value)
-- Control who sees you (your audience is their hostage)
-- Monetize your attention (ads, tracking, surveillance capitalism)
-- Force agents to scrape, hack, or use expensive APIs they control
+**For Humans:**
+- ✊ Intentional consumption - Subscribe to what matters, not what's trending
+- ✊ Sovereign creation - Own your audience, not rent it from platforms
+- ✊ Local-first data - Your information lives on your machine
+- ✊ Composable workflows - Build your own tools, don't wait for features
 
-This isn't sustainable. It's not even desirable.
-
-**These tools restore agency for humans:**
-- ✊ **Intentional consumption** - Subscribe to what matters, not what's trending
-- ✊ **Sovereign creation** - Own your audience, not rent it from platforms
-- ✊ **Local-first data** - Your information lives on your machine
-- ✊ **Composable workflows** - Build your own tools, don't wait for features
-
-**And provide foundations for agents:**
-- 🤖 **Token-efficient primitives** - RSS vs HTML parsing saves 25x on tokens
-- 🤖 **Testable during development** - Agents can verify their own code works
-- 🤖 **Multi-agent orchestration** - Compose tools for emergent behaviors
-- 🤖 **Human-agent collaboration** - Same interface, different users
-
-**The deeper vision:** RSS and Unix philosophy were designed for machine-readable, composable data flows. With LLMs and AI agents, we can finally complete this vision - tools that compose seamlessly with both humans and machines.
+**For AI Agents:**
+- 🤖 Token-efficient primitives - RSS vs HTML parsing saves 25x on tokens
+- 🤖 Testable during development - Agents can verify their own code works
+- 🤖 Multi-agent orchestration - Compose tools for emergent behaviors
+- 🤖 Human-agent collaboration - Same interface, different users
 
 Traditional tools force a choice: consumer apps for humans, or APIs for agents. These tools serve both, because **the future isn't humans OR agents - it's humans WITH agents**, using the same sovereign, composable primitives.
 
-## The Complete Specification
+## Documentation
 
-All tools follow the SCT (Sovereign Composable Tools) specification with:
-
-- **Layer 1 (Core):** Pure WASM, zero I/O, maximum portability
-- **Layer 2 (Protocol):** Optional network (feature-flagged)
-- **Layer 3 (Storage):** Optional persistence (feature-flagged)
-- **Layer 4 (Application):** CLI with stdin/stdout interface
-
-## Why Rust?
-
-**Rust is the language of choice for SCT tools, primarily because it enables AI agents to write safer, more reliable code.**
-
-### Primary Reason: Agentic Development Strengths
-
-When AI agents write code, Rust's design catches entire classes of errors at compile time rather than runtime:
-
-**Memory Safety Without Garbage Collection**
-- Agents can't write use-after-free bugs
-- No null pointer dereferences
-- No data races in concurrent code
-- Immediate compile-time feedback when ownership rules are violated
-
-**Type Safety and Compile-Time Verification**
-- Agents get clear error messages during development, not silent failures in production
-- Type system catches logic errors before code runs
-- Pattern matching ensures agents handle all cases
-- No "undefined is not a function" surprises
-
-**Agents Can Verify Their Own Code Works**
-- Compile → test → deploy cycle gives agents confidence
-- Strong type system means "if it compiles, it probably works"
-- Cargo test framework is agent-friendly
-- Clear success/failure signals for autonomous development
-
-**Deterministic Behavior**
-- No hidden runtime behavior (GC pauses, dynamic dispatch surprises)
-- Predictable performance characteristics
-- What you see in the code is what executes
-
-This matters because **agents need to build tools that compose reliably**. When an agent chains `rss-wasm | sct-vec | plurcast`, every tool must work correctly. Rust's compile-time guarantees reduce the testing burden and increase agent autonomy.
-
-### Secondary Reasons
-
-**Performance**
-- RSS parsing, PoW mining, vector search benefit from zero-cost abstractions
-- No GC pauses in long-running CLI tools
-- Efficient memory usage for local-first applications
-
-**Rich Ecosystem**
-- Excellent CLI libraries (clap, colored output)
-- Mature async runtime (tokio)
-- Strong serialization (serde, JSON/TOML)
-- SQLite bindings (rusqlite)
-- Proven Nostr libraries (rust-nostr)
-
-**Developer Experience**
-- Cargo makes dependency management trivial
-- Documentation generation built-in
-- Testing framework included
-- Clear compiler error messages (helpful for humans AND agents)
-
-### Aspirational Benefits
-
-**WASM Portability (Future Goal)**
-- Target: wasm32-wasip2 (Component Model)
-- Current status: Design phase, compatibility research in progress
-- Future deployment: CLI tools as WASM components, portable across runtimes
-- Not a requirement for v1.0, but aligns with long-term portability goals
-
-**The Bottom Line:** Rust enables AI agents to build reliable, composable tools with compile-time safety guarantees. The same features that help human developers (memory safety, type checking) are even more valuable for autonomous agents writing code.
-
----
+- [SCT Specification](/docs/sct-spec.md) - Complete architectural specification
+- [Usage Examples](/docs/examples.md) - Composition patterns and workflows
+- [Why Rust?](/docs/why-rust.md) - Language choice and agentic development
+- [sct-npow Spec](/docs/sct-npow-spec.md) - Nostr PoW reader design
 
 ## Tech Stack
 
-- **Language:** Rust (see "Why Rust?" above)
+- **Language:** Rust ([why?](/docs/why-rust.md))
 - **Storage:** SQLite / sqlite-vec (when persistence needed)
 - **Philosophy:** Unix philosophy + Local-first software + Decentralized protocols
 - **Target Platforms:** Linux, macOS, Windows (native binaries)
