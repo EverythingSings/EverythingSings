@@ -97,6 +97,8 @@ See [usage examples](/docs/examples.md) for composition patterns.
 
 "The Sovereign Individual" (Davidson & Rees-Mogg, 1997) predicted this transition - written before Bitcoin, before platform capitalism, before AI agents. They foresaw the information age would enable individual sovereignty through cryptography. **The technology arrived. The platforms captured it. These tools reclaim it.**
 
+**Demographics make this urgent:** Aging populations in developed nations create unprecedented need for automation. Fewer working-age people must support more retirees while maintaining productivity. AGI isn't just efficiency - it's economic necessity. The sovereign individual requires sovereign agents to maintain material prosperity.
+
 **For Humans:**
 - ✊ Intentional consumption - Subscribe to what matters, not what's trending
 - ✊ Sovereign creation - Own your audience, not rent it from platforms
