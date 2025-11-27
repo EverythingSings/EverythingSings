@@ -1,4 +1,4 @@
-# 👋 Hi, I'm @EverythingSings
+# 🌀 Hi, I'm @EverythingSings
 
 Building **Sovereign Composable Tools** for intentional information sovereignty.
 
@@ -30,7 +30,7 @@ These tools follow five core principles that respect user sovereignty and embrac
 1. **Sovereignty** - Users own their data, keys, and execution (no platform lock-in)
 2. **Composability** - Tools compose via text streams using structured I/O
 3. **Locality** - Offline-first, local storage is the source of truth
-4. **Portability** - Deploy anywhere: WASM-capable, cross-platform
+4. **Portability** - Platform agnostic
 5. **Openness** - Only decentralized, open protocols (no corporate APIs)
 
 **These tools don't lock you into an ecosystem - not even ours.** Each tool is independently useful and composes with anything. Standard formats (JSON, SQLite, OPML), standard protocols (Nostr, RSS), standard tools (Unix pipes, rsync, git). You can use one SCT tool without any others, and escape the ecosystem anytime.
@@ -53,7 +53,7 @@ Post to Nostr, Mastodon, and SSB from the command line. Create once, reach your 
 - Agent-friendly JSON output
 - Unix-composable (stdin/stdout, semantic exit codes)
 
-### 📡 rss-wasm - The INPUT Layer
+### 📡 sct-rss - The INPUT Layer
 **Intentional consumption for humans, token-efficient primitives for agents**
 
 Subscribe to the sources you choose - blogs, podcasts, news sites - without algorithms, ads, or surveillance. RSS is orders of magnitude more token-efficient than HTML parsing (~2K tokens vs 50K+), enabling multi-agent systems to monitor information efficiently.
